@@ -3,7 +3,7 @@
     simple chat bot
 """
 
-from flask import Flask, request
+from flask import Flask, request, render_template
 from flask_cors import CORS
 import json
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
@@ -24,9 +24,9 @@ conversation_history = []
 app = Flask(__name__)
 CORS(app)
 
-@app.route("/")
+@app.route("/", methods = ['GET'])
 def home():
-    return "Hello, World!"
+    return render_template('index.html')
 
 """
     The expected strucutre of the data will be:
